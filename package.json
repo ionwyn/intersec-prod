@@ -1,6 +1,10 @@
 {
   "name": "fuse-react-app",
   "version": "1.1.2",
+  "engines": {
+    "node": "10.16.3",
+    "npm": "6.9.0"
+  },
   "private": true,
   "description": "A music discovery and analytics platform for Spotify",
   "keywords": ["musc", "analytics", "spotify", "data-science", "discovery", "machine-learning"],
