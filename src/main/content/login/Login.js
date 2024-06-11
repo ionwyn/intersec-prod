@@ -12,15 +12,15 @@ const styles = theme => ({
   root: {
     background:
       "url('/assets/images/backgrounds/dark-material-bg.jpg') no-repeat",
-    backgroundSize: 'cover'
+    backgroundSize: 'cover',
   },
   intro: {
-    color: '#ffffff'
+    color: '#ffffff',
   },
   card: {
     width: '100%',
-    maxWidth: 400
-  }
+    maxWidth: 400,
+  },
 });
 
 class Login extends Component {
@@ -39,7 +39,7 @@ class Login extends Component {
       (this.props.login.error.username || this.props.login.error.password)
     ) {
       this.form.updateInputsWithError({
-        ...this.props.login.error
+        ...this.props.login.error,
       });
 
       this.props.login.error = null;
@@ -52,7 +52,7 @@ class Login extends Component {
           ? this.props.location.state.redirectUrl
           : '/';
       this.props.history.push({
-        pathname
+        pathname,
       });
     }
     return null;
@@ -62,8 +62,10 @@ class Login extends Component {
     const { classes } = this.props;
     const loginTo =
       process.env.NODE_ENV !== 'production'
-        ? 'https://spotilogin.herokuapp.com?env=development'
-        : 'https://spotilogin.herokuapp.com?env=production';
+        ? process.env.loginTo ||
+          'https://spotify-deploy.onrender.com?env=development'
+        : process.env.loginTo ||
+          'https://spotify-deploy.onrender.com?env=production';
 
     console.log(loginTo);
 
@@ -104,12 +106,7 @@ class Login extends Component {
               color="inherit"
               className="max-w-512 mt-16"
             >
-              An independent project to facilitate analysis and discovery for
-              popular music platforms. The project is built with React with
-              Redux and Apollo for state management. Current progress is
-              integration with AWS Lambda, API Gateway, and Firebase. For the
-              best experience please use a Firefox browser, while I continue to
-              build a better experience for other browsers.
+              Know more about what you're listening to.
             </Typography>
           </FuseAnimate>
         </div>
@@ -147,7 +144,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
       submitLogin: Actions.submitLogin,
-      loginWithFireBase: Actions.loginWithFireBase
+      loginWithFireBase: Actions.loginWithFireBase,
     },
     dispatch
   );
@@ -156,7 +153,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps({ auth }) {
   return {
     login: auth.login,
-    user: auth.user
+    user: auth.user,
   };
 }
 
